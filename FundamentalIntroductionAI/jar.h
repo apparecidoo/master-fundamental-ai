@@ -19,6 +19,8 @@ private:
 	bool search_list_stack_dfs(JarNode* content); // search in the node list used in the depth first search
 	TreeNode<JarNode*>* get_copy_node(TreeNode<JarNode*>* node); // get copy of node
 	void create_children_nodes(TreeNode<JarNode*>* node); // create new nodes based in his parent
+	void create_child_node(TreeNode<JarNode*>* node, JarNode* nodeValue); // create new node
+	bool compare_goal(JarNode* first, JarNode* second);
 
 	bool compare(JarNode* first, JarNode* second) override; // compare two contents
 	int manhattan_distance(JarNode* test, JarNode* goal) override;

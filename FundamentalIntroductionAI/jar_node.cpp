@@ -5,8 +5,9 @@ JarNode::JarNode()
 {
 }
 
-JarNode::JarNode(int jarA, int jarB)
+JarNode::JarNode(int jarA, int jarB, string operation)
 {
 	this->jarA = jarA;
 	this->jarB = jarB;
+	this->operation = operation;
 }

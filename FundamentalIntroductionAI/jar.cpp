@@ -25,7 +25,7 @@ TreeNode<JarNode*>* Jar::search_bfs(JarNode* test)
 		node->explored = true;
 		this->explored_list->enqueue(node->content);
 
-		if (this->compare(node->content, this->goal_)) // compare the current node with the goal
+		if (this->compare_goal(node->content, this->goal_)) // compare the current node with the goal
 			return node;
 
 		this->create_children_nodes(node); // create the new neighbors
@@ -62,7 +62,7 @@ TreeNode<JarNode*>* Jar::search_dfs(JarNode* test)
 		node->explored = true;
 		this->explored_list->enqueue(node->content);
 
-		if (this->compare(node->content, this->goal_)) // compare the current node with the goal
+		if (this->compare_goal(node->content, this->goal_)) // compare the current node with the goal
 			return node;
 
 		this->create_children_nodes(node); // create the new neighbors
@@ -91,6 +91,7 @@ void Jar::print_content(JarNode* content)
 {
 	cout << "JarA: " << content->jarA << endl;
 	cout << "JarB: " << content->jarB << endl;
+	cout << "Operation: " << content->operation << endl;
 }
 
 void Jar::print_node(TreeNode<JarNode*>* node)
@@ -107,6 +108,7 @@ void Jar::print_node(TreeNode<JarNode*>* node)
 void Jar::print_node_children(TreeNode<JarNode*>* node)
 {
 	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
+	this->print_content(node->content);
 	this->print_children(node);
 }
 
@@ -129,9 +131,9 @@ void Jar::test()
 {
 	std::chrono::time_point<chrono::steady_clock> tStart = std::chrono::high_resolution_clock::now();
 
-	JarNode* jar_test = new JarNode(0, 0);
+	JarNode* jar_test = new JarNode(0, 0, "start");
 
-	JarNode* jar_goal = new JarNode(-1, 2);
+	JarNode* jar_goal = new JarNode(-1, 2, "goal");
 	this->goal_ = jar_goal;
 
 	cout << "Jar Test" << endl;
@@ -145,12 +147,14 @@ void Jar::test()
 	node = this->search_dfs(jar_test);
 	cout << ">>>>>>>>>> DFS RESULT <<<<<<<<< Time: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - tStart).count() << " microseconds" << endl;
 	this->print_node(node);
+	this->back_tracking(node);
 
 	tStart = std::chrono::high_resolution_clock::now();
 	node = NULL;
 	node = this->search_bfs(jar_test);
 	cout << ">>>>>>>>>> BFS RESULT <<<<<<<<< Time: " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - tStart).count() << " microseconds" << endl;
 	this->print_node(node);
+	this->back_tracking(node);
 }
 
 bool Jar::search_list_explored(JarNode* content)
@@ -206,6 +210,11 @@ bool Jar::compare(JarNode* first, JarNode* second)
 	return first->jarA == second->jarA && first->jarB == second->jarB;
 }
 
+bool Jar::compare_goal(JarNode * first, JarNode * second)
+{
+	return first->jarB == second->jarB;
+}
+
 int Jar::manhattan_distance(JarNode * test, JarNode * goal)
 {
 	return 0;
@@ -220,43 +229,42 @@ TreeNode<JarNode*>* Jar::get_copy_node(TreeNode<JarNode*>* node)
 
 void Jar::create_children_nodes(TreeNode<JarNode*>* node)
 {
-	TreeNode<JarNode*>* move = this->get_copy_node(node);
+	TreeNode<JarNode*>* move;
 
-	if (node->content->jarA < this->limitJarA) {  // Encher a jarra A		
-		move->content = new JarNode(this->limitJarA, node->content->jarB);
-		this->set_child_properties(move, this->goal_);
-		node->children_nodes->enqueue(move);
+	if (node->content->jarA < this->limitJarA) {  // Encher a jarra A
+		create_child_node(node, new JarNode(this->limitJarA, node->content->jarB, "Encher a jarra A"));
 	}
 
 	if (node->content->jarB < this->limitJarB) { // Encher a jarra B
-		move->content = new JarNode(node->content->jarB, this->limitJarB);
-		this->set_child_properties(move, this->goal_);
-		node->children_nodes->enqueue(move);
+		create_child_node(node, new JarNode(node->content->jarB, this->limitJarB, "Encher a jarra B"));
 	}
 
 	if (node->content->jarA > 0) { // Esvaziar a jarra A
-		move->content = new JarNode(0, node->content->jarB);
-		this->set_child_properties(move, this->goal_);
-		node->children_nodes->enqueue(move);
+		create_child_node(node, new JarNode(0, node->content->jarB, "Esvaziar a jarra A"));
 	}
 
 	if (node->content->jarB > 0) { // Esvaziar a jarra B
-		move->content = new JarNode(node->content->jarA, 0);
-		this->set_child_properties(move, this->goal_);
-		node->children_nodes->enqueue(move);
+		create_child_node(node, new JarNode(node->content->jarA, 0, "Esvaziar a jarra B"));
 	}
-
-	if (node->content->jarB < this->limitJarB && node->content->jarA > 0) { // Transferir de 3 para 4
+	
+	if (node->content->jarB < this->limitJarB && node->content->jarA > 0) { // Transferir de A para B
 		int transf = this->limitJarB - node->content->jarB;
-		move->content = new JarNode(node->content->jarA - transf, node->content->jarB + transf);
-		this->set_child_properties(move, this->goal_);
-		node->children_nodes->enqueue(move);
+		create_child_node(node, new JarNode(node->content->jarA - transf, node->content->jarB + transf, "Transferir de A para B"));
 	}
 
-	if (node->content->jarA < this->limitJarA && node->content->jarB > 0) { // Transferir de 4 para 3
+	if (node->content->jarA < this->limitJarA && node->content->jarB > 0) { // Transferir de B para A
 		int transf = this->limitJarA - node->content->jarA;
-		move->content = new JarNode(node->content->jarA + transf, node->content->jarB - transf);
-		this->set_child_properties(move, this->goal_);
-		node->children_nodes->enqueue(move);
+		create_child_node(node, new JarNode(node->content->jarA + transf, node->content->jarB - transf, "Transferir de B para A"));
 	}
+
+	/*cout << "================================ \n";
+	print_node_children(node);*/
+}
+
+void Jar::create_child_node(TreeNode<JarNode*>* node, JarNode* nodeValue)
+{
+	TreeNode<JarNode*>* move = this->get_copy_node(node);
+	move->content = nodeValue;
+	this->set_child_properties(move, this->goal_);
+	node->children_nodes->enqueue(move);
 }

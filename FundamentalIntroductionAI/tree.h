@@ -78,6 +78,7 @@ int Tree<T>::new_id()
 template<class T>
 void Tree<T>::back_tracking(TreeNode<T>* node)
 {
+	cout << endl << ">> Backtracking: " << endl;
 	DynamicStack<TreeNode<T>*>* list = new DynamicStack<TreeNode<T>*>();
 	TreeNode<T>* aux_node = node;
 
