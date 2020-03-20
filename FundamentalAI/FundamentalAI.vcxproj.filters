@@ -22,7 +22,7 @@
     <ClCompile Include="jar.cpp">
       <Filter>Source Files\algorithms</Filter>
     </ClCompile>
-    <ClCompile Include="FundamentalIntroductionAI.cpp" />
+    <ClCompile Include="FundamentalAI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="custom_exception.h">

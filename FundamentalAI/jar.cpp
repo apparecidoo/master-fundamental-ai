@@ -94,39 +94,6 @@ void Jar::print_content(JarNode* content)
 	cout << "Operation: " << content->operation << endl;
 }
 
-void Jar::print_node(TreeNode<JarNode*>* node)
-{
-	if (node == NULL) {
-		cout << "Node is null or empty" << endl;
-		return;
-	}
-
-	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
-	this->print_content(node->content);
-}
-
-void Jar::print_node_children(TreeNode<JarNode*>* node)
-{
-	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
-	this->print_content(node->content);
-	this->print_children(node);
-}
-
-void Jar::print_children(TreeNode<JarNode*>* node)
-{
-	if (node != NULL) {
-		if (node->has_children()) {
-			SimpleNode<TreeNode<JarNode*>*>* child = node->children_nodes->get_root();
-
-			while (child != NULL)
-			{
-				this->print_node(child->content);
-				child = child->next_node;
-			}
-		}
-	}
-}
-
 void Jar::test()
 {
 	std::chrono::time_point<chrono::steady_clock> tStart = std::chrono::high_resolution_clock::now();

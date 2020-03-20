@@ -32,9 +32,6 @@ public:
 	TreeNode<JarNode*>* search_dfs(JarNode* test) override;
 
 	void print_content(JarNode* content) override;
-	void print_node(TreeNode<JarNode*>* node) override;
-	void print_node_children(TreeNode<JarNode*>* node) override;
-	void print_children(TreeNode<JarNode*>* node) override;
 	void test() override;
 };
 

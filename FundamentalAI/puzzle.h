@@ -42,9 +42,6 @@ public:
 	TreeNode<T>* search_hill_climbing(T test) override;
 
 	void print_content(T content) override;
-	void print_node(TreeNode<T>* node) override;
-	void print_node_children(TreeNode<T>* node) override;
-	void print_children(TreeNode<T>* node) override;
 	void test() override;
 };
 
@@ -262,41 +259,6 @@ void Puzzle<T>::print_content(T content)
 		}
 
 		cout << endl;
-	}
-}
-
-template<class T>
-void Puzzle<T>::print_node(TreeNode<T>* node)
-{
-	if (node == NULL) {
-		cout << "Node is null or empty" << endl;
-		return;
-	}
-
-	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
-	this->print_content(node->content);
-}
-
-template<class T>
-void Puzzle<T>::print_node_children(TreeNode<T>* node)
-{
-	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
-	this->print_children(node);
-}
-
-template<class T>
-void Puzzle<T>::print_children(TreeNode<T>* node)
-{
-	if (node != NULL) {
-		if (node->has_children()) {
-			SimpleNode<TreeNode<T>*>* child = node->children_nodes->get_root();
-
-			while (child != NULL)
-			{
-				this->print_node(child->content);
-				child = child->next_node;
-			}
-		}
 	}
 }
 

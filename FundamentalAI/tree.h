@@ -286,19 +286,36 @@ void Tree<T>::print_content(T content)
 template<class T>
 void Tree<T>::print_node(TreeNode<T>* node)
 {
-	throw CustomException("print_node - Method not implemented");
+	if (node == NULL) {
+		cout << "Node is null or empty" << endl;
+		return;
+	}
+
+	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
+	this->print_content(node->content);
 }
 
 template<class T>
 void Tree<T>::print_node_children(TreeNode<T>* node)
 {
-	throw CustomException("print_node_children - Method not implemented");
+	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
+	this->print_children(node);
 }
 
 template<class T>
 void Tree<T>::print_children(TreeNode<T>* node)
 {
-	throw CustomException("print_children - Method not implemented");
+	if (node != NULL) {
+		if (node->has_children()) {
+			SimpleNode<TreeNode<T>*>* child = node->children_nodes->get_root();
+
+			while (child != NULL)
+			{
+				this->print_node(child->content);
+				child = child->next_node;
+			}
+		}
+	}
 }
 
 template<class T>
