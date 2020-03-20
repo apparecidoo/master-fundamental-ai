@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FundamentalIntroductionAI", "FundamentalIntroductionAI\FundamentalIntroductionAI.vcxproj", "{AB80F640-6E02-4D80-A825-11E30435E606}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FundamentalAI", "FundamentalAI\FundamentalAI.vcxproj", "{AB80F640-6E02-4D80-A825-11E30435E606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
