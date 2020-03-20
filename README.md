@@ -1,4 +1,4 @@
-# Introdução de Fundamentos IA
+# Fundamentos da IA
 >> Mestrado - Introdução de Fundamentos IA
 
 Atividade 1
