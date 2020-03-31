@@ -7,9 +7,6 @@
     <ClCompile Include="custom_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="jar_node.cpp">
-      <Filter>Source Files\entities</Filter>
-    </ClCompile>
     <ClCompile Include="stack.cpp">
       <Filter>Source Files\algorithms</Filter>
     </ClCompile>
@@ -19,17 +16,20 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="jar.cpp">
-      <Filter>Source Files\algorithms</Filter>
-    </ClCompile>
     <ClCompile Include="FundamentalAI.cpp" />
+    <ClCompile Include="jar.cpp">
+      <Filter>Source Files\solves</Filter>
+    </ClCompile>
+    <ClCompile Include="jar_content.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="tic_tac_toe.cpp">
+      <Filter>Source Files\solves</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="custom_exception.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="puzzle.h">
-      <Filter>Header Files\algorithms</Filter>
     </ClInclude>
     <ClInclude Include="queue.h">
       <Filter>Header Files\algorithms</Filter>
@@ -55,14 +55,20 @@
     <ClInclude Include="stack_dynamic.h">
       <Filter>Header Files\algorithms</Filter>
     </ClInclude>
-    <ClInclude Include="jar_node.h">
-      <Filter>Header Files\entities</Filter>
-    </ClInclude>
-    <ClInclude Include="jar.h">
-      <Filter>Header Files\algorithms</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jar.h">
+      <Filter>Header Files\solves</Filter>
+    </ClInclude>
+    <ClInclude Include="puzzle.h">
+      <Filter>Header Files\solves</Filter>
+    </ClInclude>
+    <ClInclude Include="tic_tac_toe.h">
+      <Filter>Header Files\algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="jar_content.h">
+      <Filter>Header Files\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,17 +87,17 @@
     <Filter Include="Header Files\entities">
       <UniqueIdentifier>{9f5685fc-6c9e-4d34-9b1f-f15022c58738}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\helpers">
-      <UniqueIdentifier>{077b4535-ef8e-4f24-b416-8ae35a03d947}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\algorithms">
       <UniqueIdentifier>{126d7985-6414-4e74-b31f-7327176f322d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\entities">
       <UniqueIdentifier>{b570e401-51e8-4567-b980-13ba7568064a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\helpers">
-      <UniqueIdentifier>{54ffc1bb-0522-48d7-b97c-2cdf4506cd97}</UniqueIdentifier>
+    <Filter Include="Header Files\solves">
+      <UniqueIdentifier>{588b8060-16fe-4314-9bdb-63c40dceabba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\solves">
+      <UniqueIdentifier>{662ab549-dfa3-442c-96bd-29f48f08cec4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

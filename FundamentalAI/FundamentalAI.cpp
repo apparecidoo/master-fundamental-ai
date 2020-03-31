@@ -10,14 +10,16 @@
 #include "queue_dynamic.h"
 #include "puzzle.h"
 #include "jar.h"
+#include "tic_tac_toe.h"
 
 using namespace std;
 using namespace std::placeholders;
 
 int main()
 {
-	Jar* exerciseJar = new Jar(new JarNode(), 3, 4);
-	exerciseJar->test();
+	TicTacToe* test = new TicTacToe(2);
+
+	test->start();
 
 	system("pause");
 

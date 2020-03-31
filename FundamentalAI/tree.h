@@ -26,7 +26,8 @@ protected:
 	int new_id(); // get a new id	
 	virtual void set_child_properties(TreeNode<T>* node, T goal); // set properties for child of node
 	virtual bool compare(T first, T second); // comparing two contents
-	virtual int manhattan_distance(T test, T goal) = 0; // calculate manhattan distance
+	virtual int manhattan_distance(T state, T goal) = 0; // calculate manhattan distance
+	virtual int utility_function(T state) = 0; // calculate manhattan distance
 	virtual TreeNode<T>* a_star_get_next_node_to_explore(); // method to get the next node to be explore in the search A*
 
 public:
@@ -37,6 +38,7 @@ public:
 	virtual TreeNode<T>* search_dfs(T content); // search using depth first search
 	virtual TreeNode<T>* search_a_star(T content); // search using A*
 	virtual TreeNode<T>* search_hill_climbing(T content); // search using hill climbing
+	virtual TreeNode<T>* search_minimax(T content); // search using minimax
 	void back_tracking(TreeNode<T>* node);
 	virtual void print_content(T content); // print the node content
 	virtual void print_node(TreeNode<T>* node); // print the node properties and content
@@ -274,6 +276,12 @@ TreeNode<T>* Tree<T>::search_hill_climbing(T content)
 		}
 	}
 
+	return NULL;
+}
+
+template<class T>
+inline TreeNode<T>* Tree<T>::search_minimax(T content)
+{
 	return NULL;
 }
 

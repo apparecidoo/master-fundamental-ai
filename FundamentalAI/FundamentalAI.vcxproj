@@ -158,8 +158,9 @@
   <ItemGroup>
     <ClInclude Include="custom_exception.h" />
     <ClInclude Include="jar.h" />
-    <ClInclude Include="jar_node.h" />
+    <ClInclude Include="jar_content.h" />
     <ClInclude Include="linked_list.h" />
+    <ClInclude Include="tic_tac_toe.h" />
     <ClInclude Include="tree_node.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="puzzle.h" />
@@ -174,7 +175,7 @@
     <ClCompile Include="custom_exception.cpp" />
     <ClCompile Include="FundamentalAI.cpp" />
     <ClCompile Include="jar.cpp" />
-    <ClCompile Include="jar_node.cpp" />
+    <ClCompile Include="jar_content.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="puzzle_type.h" />
     <ClCompile Include="queue.cpp" />
@@ -184,6 +185,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="tic_tac_toe.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
