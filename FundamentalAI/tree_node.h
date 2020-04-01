@@ -19,10 +19,12 @@ public:
 	int h_score; // number of misplaced tiles
 	int g_score; // node height from tree
 	int f_score; // evaluation function
+	int u_score; // utility function
+	int level; // tree level
 	bool explored; // if the node was explored or not
 	T content; // value of the node
 
-	TreeNode(T value, TreeNode<T>* parent, int h_score = 0, int g_score = 0, int id = 0);
+	TreeNode(T value, TreeNode<T>* parent, int h_score = 0, int g_score = 0, int id = 0, int u_score = 0);
 	bool has_children(); // check if has children
 	bool has_child_to_explore(); // check if had any child to be explored
 	TreeNode<T>* get_next_to_explore();	 // get the next node that was not explored
@@ -30,12 +32,13 @@ public:
 
 
 template <class T>
-TreeNode<T>::TreeNode(T value, TreeNode<T>* parent, int h_score, int g_score, int id)
+TreeNode<T>::TreeNode(T value, TreeNode<T>* parent, int h_score, int g_score, int id, int u_score)
 {
 	this->id = id;
 	this->h_score = h_score;
 	this->g_score = g_score;
 	this->f_score = h_score + g_score;
+	this->u_score = u_score;
 	this->content = value;
 	this->children_nodes = new DynamicQueue<TreeNode<T>*>();
 	this->parent = parent;

@@ -18,6 +18,8 @@ protected:
 	TreeNode<T>* root;
 	int id;
 	int g_score;
+	DynamicStack<TreeNode<T>*>* stack_minimax_list; // minimax list used for score
+	DynamicQueue<TreeNode<T>*>* queue_minimax_list; // minimax list used for create nodes
 	DynamicQueue<TreeNode<T>*>* queue_bfs_list; // queue list used for breadth first search
 	DynamicStack<TreeNode<T>*>* stack_dfs_list; // stack list used for depth first search
 	LinkedList<TreeNode<T>*>* a_star_list; // queue list used for A*
@@ -34,11 +36,13 @@ public:
 	Tree();
 	~Tree();
 	void remove_cascate(T content); // remove the node and his children
+	
 	virtual TreeNode<T>* search_bfs(T content); // search using breadth first search
 	virtual TreeNode<T>* search_dfs(T content); // search using depth first search
 	virtual TreeNode<T>* search_a_star(T content); // search using A*
 	virtual TreeNode<T>* search_hill_climbing(T content); // search using hill climbing
-	virtual TreeNode<T>* search_minimax(T content); // search using minimax
+	virtual T minimax(T content, int levels); // search using minimax
+
 	void back_tracking(TreeNode<T>* node);
 	virtual void print_content(T content); // print the node content
 	virtual void print_node(TreeNode<T>* node); // print the node properties and content
@@ -55,6 +59,8 @@ Tree<T>::Tree()
 	this->root = NULL;
 	this->id = 1;
 	this->queue_bfs_list = new DynamicQueue<TreeNode<T>*>();
+	this->stack_minimax_list = new DynamicStack<TreeNode<T>*>();
+	this->queue_minimax_list = new DynamicQueue<TreeNode<T>*>();
 	this->stack_dfs_list = new DynamicStack<TreeNode<T>*>();
 	this->explored_list = new DynamicQueue<T>();
 	this->a_star_list = new LinkedList<TreeNode<T>*>();
@@ -101,9 +107,10 @@ void Tree<T>::back_tracking(TreeNode<T>* node)
 template<class T>
 void Tree<T>::set_child_properties(TreeNode<T>* node, T goal)
 {
-	node->h_score = this->manhattan_distance(node->content, goal);
-	node->g_score = node->parent->g_score + 1;
-	node->f_score = node->h_score + node->g_score;
+	node->h_score = goal == NULL ? 0 : this->manhattan_distance(node->content, goal);
+	node->g_score = goal == NULL ? 0 : node->parent->g_score + 1;
+	node->f_score = goal == NULL ? 0 : node->h_score + node->g_score;
+	node->level = node->level + 1;
 	node->id = this->new_id();
 }
 
@@ -280,9 +287,9 @@ TreeNode<T>* Tree<T>::search_hill_climbing(T content)
 }
 
 template<class T>
-inline TreeNode<T>* Tree<T>::search_minimax(T content)
+inline T Tree<T>::minimax(T content, int levels)
 {
-	return NULL;
+	return T();
 }
 
 template<class T>
@@ -299,14 +306,14 @@ void Tree<T>::print_node(TreeNode<T>* node)
 		return;
 	}
 
-	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
+	cout << "Id: " << node->id << " | level " << node->level << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << " | u_score " << node->u_score << endl;
 	this->print_content(node->content);
 }
 
 template<class T>
 void Tree<T>::print_node_children(TreeNode<T>* node)
 {
-	cout << "Id: " << node->id << " | g_score: " << node->g_score << " | h_score: " << node->h_score << " | f_score " << node->f_score << endl;
+	this->print_node(node);
 	this->print_children(node);
 }
 

@@ -64,11 +64,11 @@
     <ClInclude Include="puzzle.h">
       <Filter>Header Files\solves</Filter>
     </ClInclude>
-    <ClInclude Include="tic_tac_toe.h">
-      <Filter>Header Files\algorithms</Filter>
-    </ClInclude>
     <ClInclude Include="jar_content.h">
       <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="tic_tac_toe.h">
+      <Filter>Header Files\solves</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

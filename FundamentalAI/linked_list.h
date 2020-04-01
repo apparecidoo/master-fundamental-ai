@@ -26,6 +26,7 @@ public:
 	bool is_full(); // check if the stack is full
 	SimpleNode<T>* search(T content); // search if exists
 	void clear(); // remove all nodes from list
+	void clearWithoutDelete(); // remove all nodes from list
 
 	virtual bool compare(T first, T second); // compare contents
 	virtual void print(); // print all values from list
@@ -267,6 +268,13 @@ void LinkedList<T>::clear()
 	{
 		remove_first();
 	}
+}
+
+template<class T>
+void LinkedList<T>::clearWithoutDelete()
+{
+	this->number_nodes = 0;
+	this->root = NULL;
 }
 
 template <class T>

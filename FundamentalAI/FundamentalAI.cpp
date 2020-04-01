@@ -17,7 +17,7 @@ using namespace std::placeholders;
 
 int main()
 {
-	TicTacToe* test = new TicTacToe(2);
+	TicTacToe* test = new TicTacToe();
 
 	test->start();
 
