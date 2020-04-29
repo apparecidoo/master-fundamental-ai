@@ -12,7 +12,7 @@ def LinearRegressionIris2D(y_test, y_pred, title = 'Linear Regression of IRIS da
     mplt.show()
 
 
-def PcaIris2D(X_r, y, target_names, title = 'PCA of IRIS dataset'):
+def PcaIris2D(X_r, y, target_names, coef, title = 'PCA of IRIS dataset'):
     mplt.figure()
     colors = ['navy', 'turquoise', 'darkorange']
     lw = 2
@@ -20,11 +20,17 @@ def PcaIris2D(X_r, y, target_names, title = 'PCA of IRIS dataset'):
     for color, i, target_name in zip(colors, [0, 1, 2], target_names):
         mplt.scatter(X_r[y == i, 0], X_r[y == i, 1], color=color, alpha=.8, lw=lw,
                     label=target_name)
+
+    # plot lines
+    n = coef.shape[0]
+    for i in range(n):
+        mplt.arrow(0, 0, coef[i,0], coef[i,1], color = 'r')
+        
     mplt.legend(loc='best', shadow=False, scatterpoints=1)
     mplt.title(title)
     mplt.show()
 
-def Iris2D(X_lda, y, label_dict, title = 'Plot Lda'):
+def LdaIris2D(X_lda, y, label_dict, title = 'Plot Lda'):
     ax = mplt.subplot(111)
     for label,marker,color in zip(
         range(0,3),('^', 's', 'o'),('blue', 'red', 'green')):
@@ -51,7 +57,7 @@ def Iris2D(X_lda, y, label_dict, title = 'Plot Lda'):
     ax.spines["top"].set_visible(False)  
     ax.spines["right"].set_visible(False)
     ax.spines["bottom"].set_visible(False)
-    ax.spines["left"].set_visible(False)    
+    ax.spines["left"].set_visible(False)
 
     mplt.grid()
     mplt.tight_layout
