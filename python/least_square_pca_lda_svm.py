@@ -32,13 +32,13 @@ class Activity3:
         # Principal Analysis Component
         pca = PCA(n_components=2)
         pca_result = pca.fit(x).transform(x)
-        plot.PcaIris2D(pca_result, y, names)
+        plot.PcaIris2D(pca_result, y, names, np.transpose(pca.components_[0:2, :]))
 
         # Linear Dependent Analysis
         lda = LinearDiscriminantAnalysis(n_components=2)
         lda.fit(x, y).transform(x)
         y_lda_pred = lda.predict(x_test)
-        plot.Iris2D(x_test, y_lda_pred, names)
+        plot.LdaIris2D(x_test, y_lda_pred, names)
 
         # Support Vector Machine
         x_df = pd.DataFrame(iris.data, columns = features).iloc[:,2:4].values
