@@ -7,8 +7,6 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn import linear_model
 from sklearn import svm
 from sklearn.model_selection import train_test_split
-import warnings
-warnings.simplefilter(action = 'ignore', category = FutureWarning)
 
 class Activity3:
     def __init__(self):
