@@ -7,6 +7,8 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn import linear_model
 from sklearn import svm
 from sklearn.model_selection import train_test_split
+import warnings
+warnings.simplefilter(action = 'ignore', category = FutureWarning)
 
 class Activity3:
     def __init__(self):
@@ -34,9 +36,8 @@ class Activity3:
 
         # Linear Dependent Analysis
         lda = LinearDiscriminantAnalysis(n_components=2)
-        lda.fit(x, y).transform(x)
-        y_lda_pred = lda.predict(x_test)
-        plot.LdaIris2D(x_test, y_lda_pred, names)
+        result_lda = lda.fit(x, y).transform(x)
+        plot.LdaIris2D(result_lda, y, names)
 
         # Support Vector Machine
         x_df = pd.DataFrame(iris.data, columns = features).iloc[:,2:4].values
