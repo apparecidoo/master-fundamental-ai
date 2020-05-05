@@ -22,3 +22,6 @@ Atividade 6
 
 Atividade 7
   - Utilizar as funções do Scikit-learn para os Minimos Quadrados, PCA, LDA e SVM e use para a classificação dos dados de Iris de Fisher. Compare as retas geradas pelos quatro métodos. (least_square_pca_lda_svm.py)
+
+Atividade 8
+  - Use o Perceptron para classificar o dataset Iris, separando as classes “setosa” e “versicolor”. Faça o mesmo, separando as 3 classes. Teste o MLP Classifier para as 3 classes.
