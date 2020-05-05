@@ -27,12 +27,12 @@ class Activity:
         regr = linear_model.LinearRegression()
         regr.fit(x_train, y_train)
         y_regr_pred = regr.predict(x_test)
-        # plot.LinearRegressionIris2D(y_test, y_regr_pred)
+        plot.LinearRegressionIris2D(y_test, y_regr_pred)
 
         # Principal Analysis Component
         pca = PCA(n_components=2)
         pca_result = pca.fit(x).transform(x)
-        # plot.PcaIris2D(pca_result, y, names, np.transpose(pca.components_[0:2, :]))
+        plot.PcaIris2D(pca_result, y, names, np.transpose(pca.components_[0:2, :]))
 
         # Linear Dependent Analysis
         lda = LinearDiscriminantAnalysis(n_components=2)
