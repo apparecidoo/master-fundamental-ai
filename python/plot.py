@@ -6,10 +6,10 @@ from mpl_toolkits import mplot3d
 
 def Iris2D2Features(X_r, y, target_names, title = 'IRIS dataset'):
     mplt.figure()
-    colors = ['navy', 'turquoise']
+    colors = ['navy', 'turquoise', 'darkorange']
     lw = 2
 
-    for color, i, target_name in zip(colors, [0, 1, 2], target_names):
+    for color, i, target_name in zip(colors, [1, 2], target_names):
         mplt.scatter(X_r[y == i, 0], X_r[y == i, 1], color=color, alpha=.8, lw=lw,
                     label=target_name)
         
