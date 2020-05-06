@@ -23,13 +23,13 @@ class Activity:
         x_p = x[y != 2]
         y_p = y[y != 2]
         x_p_train, x_p_test, y_p_train, y_p_test = train_test_split(x_p, y_p, test_size=0.33, random_state=True)
-        perc = Perceptron(tol=1e-3, random_state=0, max_iter=1000)
+        perc = Perceptron(tol=1e-3, random_state=0, max_iter=1)
         perc.fit(x_p_train, y_p_train)
         y_perc_predict = perc.predict(x_p_test)
         plot.Iris2D(x_p_test, y_perc_predict, names, 'Perceptron Prediction of IRIS dataset - 2 features')
 
         # Perceptron
-        perc = Perceptron(tol=1e-3, random_state=0, max_iter=1000)
+        perc = Perceptron(tol=1e-3, random_state=0, max_iter=1)
         perc.fit(x_train, y_train)
         y_perc_predict = perc.predict(x_test)
         plot.Iris2D(x_test, y_perc_predict, names, 'Perceptron Prediction of IRIS dataset - 3 features with error')
