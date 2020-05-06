@@ -4,6 +4,19 @@ from matplotlib.colors import ListedColormap
 import numpy as np
 from mpl_toolkits import mplot3d
 
+def Iris2D2Features(X_r, y, target_names, title = 'IRIS dataset'):
+    mplt.figure()
+    colors = ['navy', 'turquoise']
+    lw = 2
+
+    for color, i, target_name in zip(colors, [0, 1, 2], target_names):
+        mplt.scatter(X_r[y == i, 0], X_r[y == i, 1], color=color, alpha=.8, lw=lw,
+                    label=target_name)
+        
+    mplt.legend(loc='best', shadow=False, scatterpoints=1)
+    mplt.title(title)
+    mplt.show()
+
 def Iris2D(X_r, y, target_names, title = 'IRIS dataset'):
     mplt.figure()
     colors = ['navy', 'turquoise', 'darkorange']

@@ -19,12 +19,15 @@ class Activity:
         y = iris.target
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=True)
 
-        # Perceptron
+        # Perceptron setosa and versicolor
+        x_p = x[y != 0]
+        y_p = y[y != 0]
+        x_p_train, x_p_test, y_p_train, y_p_test = train_test_split(x_p, y_p, test_size=0.33, random_state=True)
         perc = Perceptron(tol=1e-3, random_state=0, max_iter=1000)
-        perc.fit(x_train, y_train)
-        perc_score = perc.score(x_test, y_test)
-        y_perc_predict = perc.predict(x_test)
-        plot.Iris2D(x_test, y_perc_predict, names, 'Perceptron Prediction of IRIS dataset - Score ' + str(perc_score * 100) + '%')
+        perc.fit(x_p_train, y_p_train)
+        perc_score = perc.score(x_p_test, y_p_test)
+        y_perc_predict = perc.predict(x_p_test)
+        plot.Iris2D2Features(x_p_test, y_perc_predict, names[names != 'virginica'], 'Perceptron Prediction of IRIS dataset - Score ' + str(perc_score * 100) + '%')
 
         # Multi Layer Perceptron
         mlp = MLPClassifier(max_iter=1000)
