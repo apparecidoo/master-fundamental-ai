@@ -25,3 +25,6 @@ Atividade 7
 
 Atividade 8
   - Use o Perceptron para classificar o dataset Iris, separando as classes “setosa” e “versicolor”. Faça o mesmo, separando as 3 classes. Teste o MLP Classifier para as 3 classes.
+
+Atividade 9
+  - Utilizar a biblioteca Keras para a criação de uma CNN LeNet-5 (lenet.py)
