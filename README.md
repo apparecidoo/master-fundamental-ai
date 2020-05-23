@@ -28,3 +28,9 @@ Atividade 8
 
 Atividade 9
   - Utilizar a biblioteca Keras para a criação de uma CNN LeNet-5 (lenet.py)
+
+Atividade 10
+  - Implementar Q-Learning para mundo de grades (q_learning.py)
+
+Atividade 11
+  - Resenha do artigo: Recent Trend in Deep Learning Base Neural Language Processing, de Tom Young et al
