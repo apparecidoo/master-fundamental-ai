@@ -81,12 +81,10 @@ class QLearning:
         print('\n>> pi*')
         for i in range(self.__numberStates):
             maxVal = 0
-            maxIndex = -1
             
             for j in range(len(self.__mQ[i])):
                 if self.__mQ[i][j] > maxVal:
                     maxVal = self.__mQ[i][j]
-                    maxIndex = j
             
             v.append(maxVal)
 
