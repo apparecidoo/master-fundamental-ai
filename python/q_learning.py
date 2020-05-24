@@ -20,6 +20,7 @@ class QLearning:
         self.__gama = gama
         self.__mQ = np.zeros((self.__numberStates, self.__numberStates))
         self.__mAdj = np.zeros((self.__numberStates, self.__numberStates))
+        self.__goalState = goalState
         if goalState is None:
             self.__goalState = self.__numberStates - 1
 
@@ -72,6 +73,12 @@ class QLearning:
             self.__episodes -= 1 
 
     def printResult(self):
+        v = []
+
+        print('Q-table')
+        print(self.__mQ)
+
+        print('\n>> pi*')
         for i in range(self.__numberStates):
             maxVal = 0
             maxIndex = -1
@@ -80,16 +87,23 @@ class QLearning:
                 if self.__mQ[i][j] > maxVal:
                     maxVal = self.__mQ[i][j]
                     maxIndex = j
+            
+            v.append(maxVal)
 
             if i == self.__goalState:
-                print('Goal State ' + str(i))
+                print('pi*(' + str(i) + ') = goal')
             else:
                 for j in range(len(self.__mQ[i])):
                     if self.__mQ[i][j] == maxVal:
-                        print('State ' + str(i) + ' go to state ' + str(j))
+                        print('pi*(' + str(i) + ') = go to ' + str(j))
 
+        print('\n>> v*')
+        for i in range(len(v)):
+            print('v*(' + str(i) + ') = ' + str(v[i]))
 
+        print()
 
+# class test
 ql = QLearning(numberStates=6, gama=0.8, startState=1)
 ql.addConnection(0, 4, 0, True)
 ql.addConnection(2, 3, 0, True)
@@ -102,3 +116,19 @@ ql.addConnection(5, 4, 0)
 
 ql.run()
 ql.printResult()
+
+# exercise
+qle = QLearning(numberStates=6, alpha=0.1, gama=0.9, goalState=4, startState=0)
+qle.addConnection(0, 1, 0, True)
+qle.addConnection(0, 2, 0, True)
+qle.addConnection(1, 3, 0, True)
+qle.addConnection(2, 4, 0, True)
+qle.addConnection(2, 3, 0, True)
+qle.addConnection(3, 4, 100)
+qle.addConnection(4, 3, 0)
+qle.addConnection(3, 5, 0, True)
+qle.addConnection(4, 5, 0)
+qle.addConnection(5, 4, 100)
+
+qle.run()
+qle.printResult()
